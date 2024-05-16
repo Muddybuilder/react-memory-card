@@ -1,5 +1,26 @@
-export default function Card({ id, histList = [], setHistList, setIsClicked }) {
+import { useEffect, useState } from "react";
+
+const pokeApi = "https://pokeapi.co/api/v2/pokemon/";
+export default function Card({
+  id,
+  name,
+  histList = [],
+  setHistList,
+  setIsClicked,
+}) {
   const cardId = id;
+  const pokemonName = name;
+  const [imgUrl, setImgUrl] = useState("");
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      const res = await fetch(pokeApi.concat(pokemonName));
+      const ret = await res.json();
+      const url = ret.sprites.front_default;
+      setImgUrl(url);
+    };
+    fetchImage();
+  }, [pokemonName]);
 
   function handleClick() {
     // check if cardId is in histList
@@ -13,9 +34,12 @@ export default function Card({ id, histList = [], setHistList, setIsClicked }) {
     }
     setIsClicked(true);
   }
+
   return (
     <>
-      <button onClick={handleClick}>{cardId}</button>
+      <button>
+        <img src={imgUrl} alt={pokemonName} onClick={handleClick} />
+      </button>
     </>
   );
 }

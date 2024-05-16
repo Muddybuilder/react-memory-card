@@ -2,7 +2,18 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
-const idList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const idList = [
+  { id: 1, name: "pikachu" },
+  { id: 2, name: "bulbasaur" },
+  { id: 3, name: "charmander" },
+  { id: 4, name: "caterpie" },
+  { id: 5, name: "abra" },
+  { id: 6, name: "muk" },
+  { id: 7, name: "mewtwo" },
+  { id: 8, name: "meowth" },
+  { id: 9, name: "mankey" },
+  { id: 10, name: "krabby" },
+];
 
 function shuffleList(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -36,11 +47,12 @@ function App() {
       <p>score:{score}</p>
       <p>max Score: {maxScore}</p>
       <div>
-        {shuffleList(idList).map((id) => {
+        {shuffleList(idList).map((pokemon) => {
           return (
-            <div key={id}>
+            <div key={pokemon.id}>
               <Card
-                id={id}
+                id={pokemon.id}
+                name={pokemon.name}
                 histList={histList}
                 setHistList={setHistList}
                 setIsClicked={setIsClicked}
