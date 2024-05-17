@@ -13,7 +13,7 @@ const idList = [
   { id: 8, name: "meowth" },
   { id: 9, name: "mankey" },
   { id: 10, name: "krabby" },
-  { id: 11, name: "charmander" },
+  { id: 11, name: "squirtle" },
   { id: 12, name: "blastoise" },
   { id: 13, name: "metapod" },
   { id: 14, name: "weedle" },
