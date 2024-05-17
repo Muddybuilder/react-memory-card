@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import Card from "./Card";
 
 const idList = [
@@ -13,6 +13,16 @@ const idList = [
   { id: 8, name: "meowth" },
   { id: 9, name: "mankey" },
   { id: 10, name: "krabby" },
+  { id: 11, name: "charmander" },
+  { id: 12, name: "blastoise" },
+  { id: 13, name: "metapod" },
+  { id: 14, name: "weedle" },
+  { id: 15, name: "pidgey" },
+  { id: 16, name: "rattata" },
+  { id: 17, name: "fearow" },
+  { id: 18, name: "arbok" },
+  { id: 19, name: "sandshrew" },
+  { id: 20, name: "jigglypuff" },
 ];
 
 function shuffleList(array) {
@@ -28,38 +38,35 @@ function App() {
   const [maxScore, setMaxScore] = useState(0);
   const [histList, setHistList] = useState([]);
   const score = histList.length;
-  useEffect(() => {
-    if (isClicked) {
-      if (histList.length > maxScore) {
-        setMaxScore(histList.length);
-      }
-    }
-  }, [isClicked]);
 
-  useEffect(() => {
-    if (isClicked) {
-      setIsClicked(false);
+  if (isClicked) {
+    if (histList.length > maxScore) {
+      setMaxScore(histList.length);
     }
-  }, [isClicked]);
+    setIsClicked(false);
+  }
   return (
     <>
-      <p>Hello!</p>
-      <p>score:{score}</p>
-      <p>max Score: {maxScore}</p>
-      <div>
-        {shuffleList(idList).map((pokemon) => {
-          return (
-            <div key={pokemon.id}>
-              <Card
-                id={pokemon.id}
-                name={pokemon.name}
-                histList={histList}
-                setHistList={setHistList}
-                setIsClicked={setIsClicked}
-              />
-            </div>
-          );
-        })}
+      <div className="header">
+        <p>Score: {score}</p>
+        <p>Best Score: {maxScore}</p>
+      </div>
+      <div className="card-container">
+        {shuffleList(idList)
+          .slice(0, 10)
+          .map((pokemon) => {
+            return (
+              <Fragment key={pokemon.id}>
+                <Card
+                  id={pokemon.id}
+                  name={pokemon.name}
+                  histList={histList}
+                  setHistList={setHistList}
+                  setIsClicked={setIsClicked}
+                />
+              </Fragment>
+            );
+          })}
       </div>
     </>
   );

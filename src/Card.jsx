@@ -37,8 +37,8 @@ export default function Card({
 
   return (
     <>
-      <button>
-        <img src={imgUrl} alt={pokemonName} onClick={handleClick} />
+      <button className="butt" onClick={handleClick}>
+        <img src={imgUrl} width="70%" height="70%" alt={pokemonName} />
       </button>
     </>
   );
