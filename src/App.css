@@ -15,12 +15,12 @@
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 10px;
 }
 
 .butt {
-  min-width: 150px;
-  min-height: 150px;
+  min-width: 130px;
+  min-height: 130px;
   aspect-ratio: 1/1;
 }
