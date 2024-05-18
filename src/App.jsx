@@ -31,7 +31,6 @@ function App() {
       return new Promise((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = image.url;
-        // wait 0.5 seconds to simulate loading time
         loadImg.onload = () =>
           setTimeout(() => {
             resolve(image.url);
@@ -49,30 +48,34 @@ function App() {
   return (
     <>
       <div className="header">
-        <p>Score: {score}</p>
-        <p>Best Score: {maxScore}</p>
+        <div>
+          <h2>Pokemon Memory Game</h2>
+        </div>
+        <div>
+          <p>Score: {score}</p>
+          <p>Best Score: {maxScore}</p>
+        </div>
       </div>
+      {imgsLoaded ? null : <h2>Loading game...</h2>}
       <div className="card-container">
-        {imgsLoaded ? (
-          shuffleList(pokemonList)
-            .slice(0, 10)
-            .map((pokemon) => {
-              return (
-                <Fragment key={pokemon.id}>
-                  <Card
-                    id={pokemon.id}
-                    name={pokemon.name}
-                    url={pokemon.url}
-                    histList={histList}
-                    setHistList={setHistList}
-                    setIsClicked={setIsClicked}
-                  />
-                </Fragment>
-              );
-            })
-        ) : (
-          <h2>Calling Pokemon...</h2>
-        )}
+        {imgsLoaded
+          ? shuffleList(pokemonList)
+              .slice(0, 10)
+              .map((pokemon) => {
+                return (
+                  <Fragment key={pokemon.id}>
+                    <Card
+                      id={pokemon.id}
+                      name={pokemon.name}
+                      url={pokemon.url}
+                      histList={histList}
+                      setHistList={setHistList}
+                      setIsClicked={setIsClicked}
+                    />
+                  </Fragment>
+                );
+              })
+          : null}
       </div>
     </>
   );

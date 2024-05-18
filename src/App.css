@@ -1,19 +1,23 @@
 #root {
-  max-width: 800px;
-  height: 80vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  max-width: 800px;
   gap: 20px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
 .header {
-  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card-container {
+  text-align: center;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 10px;
